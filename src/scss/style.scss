@@ -79,10 +79,15 @@
     }
   }
   /*-------------------------------------------*/
-  .__container{
-      max-width: 1200px;
-      margin: 0 auto;
-  }
-  .selector-for-some-widget {
-    box-sizing: content-box;
-  }
+.__container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+.title{
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 72px;
+}
