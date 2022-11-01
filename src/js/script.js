@@ -7,43 +7,27 @@ burger.onclick = function() {
     headerMenu.classList.toggle('active');
     document.body.classList.toggle('lock');
 }
-/*Player*/
 
+/*Player*/
 const player = document.querySelector('.player');
 
 const audio = document.querySelector('.audio');
-let Seconds = 0;
+let MinuteMax = 0;
+let SecondsMax = 0;
 let Minute = 0;
+let Seconds = 0;
 let TimePlayer = audio.duration
 
-
+/*---Нахождение максимальной длины аудио---*/
 const MaxTimePlayer = () =>{
   while (TimePlayer >= 60) {
     TimePlayer -= 60;
-    Minute +=1
+    MinuteMax +=1
   }
-  Seconds = TimePlayer
+  SecondsMax = TimePlayer
 }
-const playerTime = document.querySelector('.player-time');
-let CurrentTime = audio.currentTime
-const CurrentTimePlayer = () =>{
-  while (CurrentTimePlayeer <= TimePlayer){
-
-    player.innerHTML += `
-    <div class="player-time">
-      ${Math.round(audio.currentTime*100)/100} - 0${Minute}:${Math.floor(Seconds)}
-    </div>
-    
-    `
-  }
-}
-// CurrentTimePlayer();
-MaxTimePlayer();
-
-function progressUpdate() {
- 
-}
-
+MaxTimePlayer()
+/*-------------------*/
 player.innerHTML += `
                    
                    <div value='play' class="player-btn">
@@ -51,20 +35,30 @@ player.innerHTML += `
                    </div>
                    <input class="player-progress" type="range" min="0" max="10" step="0.01" value="0">
                    <div class="player-time">
-                   ${Math.round(audio.currentTime*100)/100} - 0${Minute}:${Math.floor(Seconds)}
+                   <span class='CurrentTime'>00:00</span> - 0${MinuteMax}:${Math.floor(SecondsMax)}
                   </div>
 `
-
-
+/*---Пауза по кнопке---*/
 const playerBtn = document.querySelector('.player-btn');
 
 playerBtn.addEventListener('click', function() {
   const audio = document.querySelector('.audio');
     if(audio.paused) {
         audio.play();
-       
+        MaxTimePlayer();
+        /*---счетчик по времени аудио---*/
+        let CurrentTimePlayeer = document.querySelector('.CurrentTime');
+        audio.ontimeupdate = function() {myFunction()};
+        function myFunction() {
+          while (audio.currentTime >= 60) {
+            audio.currentTime -= 60;
+            Minute +=1
+          }
+          Seconds = audio.currentTime 
+          CurrentTimePlayeer.innerHTML = `0${Minute}:${Math.floor(Seconds)}`
+        }
       } else {
         audio.pause();
       }
 });
-progressUpdate()
+/*-------------------*/
