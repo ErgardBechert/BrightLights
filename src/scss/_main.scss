@@ -2,16 +2,50 @@
     background: url('../img/main/Main-bcg.jpg') no-repeat;
   
     &-body{
+        position: relative;
         width: 100%;
         height: 900px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 100px  0;
+        padding: 150px  0;
         &__subtitle{
             font-weight: 700;
             font-size: 100px;
             line-height: 150px;
+        }
+        &__cards{
+          
+            // position: absolute;
+            // bottom: -25%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 100px 0 0 0;
+        }
+        &__card{
+            width: 350px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 20px 0 20px 0;
+            &.work{
+                background: url('../img/main/Work.jpg') no-repeat;
+            }
+            &.vibes{
+                background: url('../img/main/Vibes.jpg') no-repeat;
+            }
+            &.stream{
+                background: url('../img/main/Stream.jpg') no-repeat;
+            }
+
+            &-text{
+                padding: 20px;
+                background: rgba(122, 102, 204, 0.7);
+                border-radius: 20px 0 20px 0;
+            }
         }
     }
 }

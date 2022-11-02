@@ -11,7 +11,7 @@ burger.onclick = function() {
 
 const player = document.querySelector('.player');
 
-const audio = document.querySelector('.audio');
+const audio = document.querySelectorAll('.audio')[0];
 let Seconds = 0;
 let Minute = 0;
 let TimePlayer = audio.duration
@@ -24,6 +24,12 @@ const MaxTimePlayer = () =>{
   }
   Seconds = TimePlayer
 }
+
+audControl = document.querySelector('.player-progress'),
+audio.addEventListener('input', function () {
+  audio.currentTime = volumeControl.value;
+}, false);
+
 const playerTime = document.querySelector('.player-time');
 let CurrentTime = audio.currentTime
 const CurrentTimePlayer = () =>{
@@ -39,10 +45,6 @@ const CurrentTimePlayer = () =>{
 }
 // CurrentTimePlayer();
 MaxTimePlayer();
-
-function progressUpdate() {
- 
-}
 
 player.innerHTML += `
                    
@@ -67,4 +69,3 @@ playerBtn.addEventListener('click', function() {
         audio.pause();
       }
 });
-progressUpdate()
